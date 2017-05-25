@@ -1,6 +1,7 @@
 module MiniD20::Node
   SUBCLASSES = {
     h1: H1,
+    h2: H2,
     p: Paragraph
   }
 
