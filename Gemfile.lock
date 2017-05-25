@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     pdf-core (0.7.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
@@ -11,6 +14,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  nokogiri
   prawn
 
 BUNDLED WITH
