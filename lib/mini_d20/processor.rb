@@ -7,7 +7,9 @@ class MiniD20::Processor
 
   def process
     Prawn::Document.generate(pdf_path) do |pdf|
-      doc.children.each { |c| MiniD20::Node.process(c, pdf) }
+      pdf.reflow_column_box [0, pdf.cursor], columns: 2, width: pdf.bounds.width do
+        doc.children.each { |c| MiniD20::Node.process(c, pdf) }
+      end
     end
   end
 
