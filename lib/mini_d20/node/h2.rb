@@ -1,6 +1,6 @@
 module MiniD20::Node
   module H2
-    def self.process(node, pdf)
+    def self.render(node, pdf)
       pdf.font "Book Antiqua", size: 11
       pdf.text node.inner_html.strip, style: :bold
       pdf.move_down 1

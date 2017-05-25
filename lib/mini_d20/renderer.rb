@@ -1,11 +1,11 @@
-class MiniD20::Processor
+class MiniD20::Renderer
   attr_accessor :filename
 
   def initialize(filename)
     self.filename = filename
   end
 
-  def process
+  def render
 
     Prawn::Document.generate(pdf_path) do |pdf|
       pdf.font_families["Book Antiqua"] = {
@@ -14,7 +14,7 @@ class MiniD20::Processor
       }
 
       pdf.reflow_column_box [0, pdf.cursor], columns: 2, width: pdf.bounds.width do
-        doc.children.each { |c| MiniD20::Node.process(c, pdf) }
+        doc.children.each { |c| MiniD20::Node.render(c, pdf) }
       end
     end
   end

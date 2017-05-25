@@ -1,6 +1,6 @@
 module MiniD20::Node
   module Paragraph
-    def self.process(node, pdf)
+    def self.render(node, pdf)
       text = node.inner_html.gsub(/\n/, "").gsub(/\s+/, " ")
 
       pdf.font "Book Antiqua", size: 10

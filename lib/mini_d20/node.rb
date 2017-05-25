@@ -2,14 +2,15 @@ module MiniD20::Node
   SUBCLASSES = {
     h1: H1,
     h2: H2,
-    p: Paragraph
+    p: Paragraph,
+    table: Table
   }
 
-  def self.process(node, pdf)
+  def self.render(node, pdf)
     if subclass = SUBCLASSES[node.name.to_sym]
-      subclass.process(node, pdf)
+      subclass.render(node, pdf)
     else
-      node.children.each { |c| process(c, pdf) }
+      node.children.each { |c| render(c, pdf) }
     end
   end
 end
