@@ -8,8 +8,8 @@ module MiniD20::Node
   def self.process(node, pdf)
     if subclass = SUBCLASSES[node.name.to_sym]
       subclass.process(node, pdf)
+    else
+      node.children.each { |c| process(c, pdf) }
     end
-
-    node.children.each { |c| process(c, pdf) }
   end
 end
