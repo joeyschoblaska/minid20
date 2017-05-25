@@ -4,6 +4,7 @@ Bundler.require :default
 
 require "./lib/mini_d20"
 
-task :build do
+desc "generate PDF from HTML input"
+task :generate do
   MiniD20::Processor.new("mini-d20.html").process
 end
