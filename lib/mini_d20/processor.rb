@@ -13,8 +13,6 @@ class MiniD20::Processor
         bold:   { file: "fonts/BookAntiqua-Bold.ttf" }
       }
 
-      pdf.font "Book Antiqua", size: 10
-
       pdf.reflow_column_box [0, pdf.cursor], columns: 2, width: pdf.bounds.width do
         doc.children.each { |c| MiniD20::Node.process(c, pdf) }
       end
