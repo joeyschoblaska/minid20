@@ -5,7 +5,7 @@ module MiniD20::Node
     FONTS = {
       h1:      ["Book Antiqua", size: 16],
       h2:      ["Book Antiqua", size: 11, style: :bold],
-      primary: ["Book Antiqua", size: 10]
+      primary: ["Book Antiqua", size: 9]
     }
 
     # todo: add a method_missing that proxies methods to pdf

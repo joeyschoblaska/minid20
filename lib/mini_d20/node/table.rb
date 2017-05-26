@@ -2,8 +2,8 @@ module MiniD20::Node
   class Table < Base
     attr_accessor :widths, :stripes
 
-    TR_HEIGHT = 14
-    TR_V_PAD = 3
+    TR_HEIGHT = 11
+    TR_V_PAD = 2
 
     def initialize(node, pdf)
       super
