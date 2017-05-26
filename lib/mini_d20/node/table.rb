@@ -14,16 +14,46 @@ module MiniD20::Node
     end
 
     def render
+      set_widths
+
       node.css("tr").each do |tr|
-        tr.css("td").each { |td| render_td(td) }
-        pdf.stroke { pdf.horizontal_rule }
+        pdf.bounding_box [pdf.bounds.left, pdf.cursor], width: pdf.bounds.width, height: 11 do
+          tr.css("td").each_with_index do |td, i|
+            render_td(td, i)
+            pdf.move_cursor_to pdf.bounds.top
+          end
+        end
+
+        if html_classes(tr).include?("underline")
+          pdf.stroke { pdf.horizontal_rule }
+        end
+
+        pdf.move_down 3
       end
     end
 
-    def render_td(td)
+    private
+
+    def render_td(td, i)
       html = MiniD20::Node.clean_html(td.inner_html)
       pdf.font "Book Antiqua", size: 10
-      pdf.text html, inline_format: true
+
+      tr_width = pdf.bounds.width
+      td_left = widths[0, i].reduce(0) { |sum, i| sum + i } / 100.0 * tr_width
+      td_width = widths[i] / 100.0 * tr_width
+
+      pdf.bounding_box [td_left, pdf.cursor], width: td_width, height: pdf.bounds.height do
+        pdf.text html, inline_format: true
+      end
+    end
+
+    def set_widths
+      tds = node.css("tr").first.css("td")
+      self.widths = tds.map { |td| td.attr(:width).to_i }
+    end
+
+    def html_classes(element)
+      (element.attr(:class) || "").split(" ")
     end
   end
 end
