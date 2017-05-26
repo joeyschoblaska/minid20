@@ -1,11 +1,14 @@
 module MiniD20::Node
   class Table < Base
-    attr_accessor :widths, :stripe
+    attr_accessor :widths, :stripes
+
+    TR_HEIGHT = 14
+    TR_V_PAD = 3
 
     def initialize(node, pdf)
       super
       self.widths = []
-      self.stripe = :dark
+      self.stripes = [:dark, :light]
     end
 
     def render
@@ -13,18 +16,21 @@ module MiniD20::Node
       set_widths
 
       node.css("tr").each do |tr|
-        pdf.bounding_box [pdf.bounds.left, pdf.cursor], width: pdf.bounds.width, height: 11 do
+        if !html_classes(tr).include?("no-stripe") && self.stripes.reverse!.first == :dark
+          pdf.fill_color "cccccc"
+          pdf.fill { pdf.rectangle [pdf.bounds.left, pdf.cursor], pdf.bounds.width, TR_HEIGHT }
+          pdf.fill_color "000000"
+        end
+
+        pdf.bounding_box [pdf.bounds.left, pdf.cursor], width: pdf.bounds.width, height: TR_HEIGHT do
           tr.css("td").each_with_index do |td, i|
+            pdf.move_down TR_V_PAD
             render_td(td, i)
             pdf.move_cursor_to pdf.bounds.top
           end
         end
 
-        if html_classes(tr).include?("underline")
-          pdf.stroke { pdf.horizontal_rule }
-        end
-
-        pdf.move_down 3
+        pdf.stroke { pdf.horizontal_rule } if html_classes(tr).include?("underline")
       end
     end
 

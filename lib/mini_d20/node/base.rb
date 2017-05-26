@@ -8,6 +8,8 @@ module MiniD20::Node
       primary: ["Book Antiqua", size: 10]
     }
 
+    # todo: add a method_missing that proxies methods to pdf
+
     def self.render(node, pdf)
       new(node, pdf).render
     end
