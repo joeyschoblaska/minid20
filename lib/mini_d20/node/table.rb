@@ -9,6 +9,7 @@ module MiniD20::Node
     end
 
     def render
+      font :primary
       set_widths
 
       node.css("tr").each do |tr|
@@ -31,7 +32,6 @@ module MiniD20::Node
 
     def render_td(td, i)
       html = MiniD20::Node.clean_html(td.inner_html)
-      pdf.font "Book Antiqua", size: 10
 
       tr_width = pdf.bounds.width
       td_left = widths[0, i].reduce(0) { |sum, i| sum + i } / 100.0 * tr_width
