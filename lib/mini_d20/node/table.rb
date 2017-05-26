@@ -1,16 +1,11 @@
 module MiniD20::Node
-  class Table
-    attr_accessor :widths, :stripe, :pdf, :node
-
-    def self.render(node, pdf)
-      new(node, pdf).render
-    end
+  class Table < Base
+    attr_accessor :widths, :stripe
 
     def initialize(node, pdf)
+      super
       self.widths = []
       self.stripe = :dark
-      self.node = node
-      self.pdf = pdf
     end
 
     def render
@@ -50,10 +45,6 @@ module MiniD20::Node
     def set_widths
       tds = node.css("tr").first.css("td")
       self.widths = tds.map { |td| td.attr(:width).to_i }
-    end
-
-    def html_classes(element)
-      (element.attr(:class) || "").split(" ")
     end
   end
 end
