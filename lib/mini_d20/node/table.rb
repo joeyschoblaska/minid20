@@ -52,9 +52,10 @@ module MiniD20::Node
       tr_width = bounds.width
       cell_left = widths[0, i].reduce(0) { |sum, i| sum + i } / 100.0 * tr_width
       cell_width = widths[i] / 100.0 * tr_width
+      align = html_classes(cell).include?("center") ? :center : :left
 
       bounding_box [cell_left, cursor], width: cell_width, height: bounds.height do
-        text html, inline_format: true
+        text html, inline_format: true, align: align
       end
     end
 
