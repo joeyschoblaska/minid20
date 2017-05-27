@@ -14,9 +14,10 @@ module MiniD20::Node
 
     def render
       font :primary
-      set_widths
 
       node.css("tr").each do |tr|
+        set_widths(tr)
+
         if tr.css("th").empty? && self.stripes.reverse!.first == :dark
           fill_color "cccccc"
           fill { rectangle [bounds.left, cursor], bounds.width, TR_HEIGHT }
@@ -57,9 +58,12 @@ module MiniD20::Node
       end
     end
 
-    def set_widths
-      tds = node.css("tr").first.css("td, th")
-      self.widths = tds.map { |td| td.attr(:width).to_i }
+    def set_widths(tr)
+      cells = tr.css("td, th")
+
+      if cells.all? { |c| c.attr(:width) }
+        self.widths = cells.map { |c| c.attr(:width).to_i }
+      end
     end
   end
 end
