@@ -14,6 +14,9 @@ module MiniD20::Node
     def render
       font :primary
       set_widths
+      pdf.line_width(0.5)
+
+      pdf.stroke { pdf.horizontal_rule }
 
       node.css("tr").each do |tr|
         if !html_classes(tr).include?("no-stripe") && self.stripes.reverse!.first == :dark
@@ -32,6 +35,10 @@ module MiniD20::Node
 
         pdf.stroke { pdf.horizontal_rule } if html_classes(tr).include?("underline")
       end
+
+      pdf.stroke { pdf.horizontal_rule }
+
+      pdf.move_down 10
     end
 
     private
