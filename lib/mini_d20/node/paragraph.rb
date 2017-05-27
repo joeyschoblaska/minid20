@@ -3,8 +3,8 @@ module MiniD20::Node
     def render
       html = MiniD20::Node.clean_html(node.inner_html)
       font :primary
-      pdf.text html, inline_format: true
-      pdf.move_down 10
+      text html, inline_format: true
+      move_down 10
     end
   end
 end

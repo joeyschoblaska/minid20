@@ -9,10 +9,12 @@ module MiniD20::Node
       th: ["Book Antiqua", size: 9, style: :bold]
     }
 
-    # todo: add a method_missing that proxies methods to pdf
-
     def self.render(node, pdf)
       new(node, pdf).render
+    end
+
+    def method_missing(method, *args, &block)
+      pdf.send(method, *args, &block)
     end
 
     def initialize(node, pdf)
