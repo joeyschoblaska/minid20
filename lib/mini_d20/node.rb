@@ -14,8 +14,4 @@ module MiniD20::Node
       node.children.each { |c| render(c, pdf) }
     end
   end
-
-  def self.clean_html(html)
-    html.gsub(/\n/, "").gsub(/\s+/, " ")
-  end
 end

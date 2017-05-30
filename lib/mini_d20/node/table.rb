@@ -46,7 +46,7 @@ module MiniD20::Node
     private
 
     def render_cell(cell, i)
-      html = MiniD20::Node.clean_html(cell.inner_html)
+      html = clean_html(cell.inner_html)
       font cell.name == "th" ? :th : :primary
 
       tr_width = bounds.width

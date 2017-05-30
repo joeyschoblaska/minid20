@@ -29,5 +29,9 @@ module MiniD20::Node
     def font(name)
       pdf.font *FONTS[name]
     end
+
+    def clean_html(html)
+      html.gsub(/\n/, "").gsub(/\s+/, " ")
+    end
   end
 end
