@@ -2,8 +2,6 @@ module MiniD20::Node
   class Table < Base
     attr_accessor :widths, :stripes, :top_line_drawn
 
-    TR_V_PAD = 3
-
     def initialize(node, pdf)
       super
       self.widths = []
@@ -40,7 +38,7 @@ module MiniD20::Node
 
     def render_cells(tr)
       tr.css("td, th").each_with_index do |cell, i|
-        move_down TR_V_PAD
+        move_down 1
         render_cell(cell, i)
         move_cursor_to bounds.top
       end
@@ -54,6 +52,11 @@ module MiniD20::Node
       cell_left = widths[0, i].reduce(0) { |sum, i| sum + i } / 100.0 * tr_width
       cell_width = widths[i] / 100.0 * tr_width
       align = html_classes(cell).include?("center") ? :center : :left
+
+      if i == 0
+        cell_left += 1
+        cell_width -= 1
+      end
 
       bounding_box [cell_left, cursor], width: cell_width do
         text html, inline_format: true, align: align
