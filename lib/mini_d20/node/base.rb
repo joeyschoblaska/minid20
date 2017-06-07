@@ -22,7 +22,7 @@ module MiniD20::Node
       self.pdf = pdf
     end
 
-    def html_classes(element)
+    def html_classes(element = node)
       (element.attr(:class) || "").split(" ")
     end
 
