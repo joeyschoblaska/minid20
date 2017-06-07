@@ -1,4 +1,4 @@
-# MiniD20
+# Mini D20
 
-## Todo
+## TODO
 * Better logo / h1
