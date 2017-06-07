@@ -6,7 +6,7 @@ module MiniD20::Node
       h1:      ["Book Antiqua", size: 16],
       h2:      ["Book Antiqua", size: 11, style: :bold],
       primary: ["Book Antiqua", size: 9],
-      th: ["Book Antiqua", size: 9, style: :bold]
+      th:      ["Book Antiqua", size: 9, style: :bold]
     }
 
     def self.render(node, pdf)
