@@ -8,8 +8,10 @@ class MiniD20::Renderer
   def render
     Prawn::Document.generate(pdf_path) do |pdf|
       pdf.font_families["Book Antiqua"] = {
-        normal: { file: "fonts/BookAntiqua.ttf" },
-        bold:   { file: "fonts/BookAntiqua-Bold.ttf" }
+        normal:      { file: "fonts/BookAntiqua.ttf" },
+        bold:        { file: "fonts/BookAntiqua-Bold.ttf" },
+        italic:      { file: "fonts/BookAntiqua-Italic.ttf" },
+        bold_italic: { file: "fonts/BookAntiqua-BoldItalic.ttf" }
       }
 
       pdf.fill_color "000000"
