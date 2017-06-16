@@ -54,8 +54,9 @@ module MiniD20::Node
       html = clean_html(cell.inner_html)
       font cell.name == "th" ? :th : :primary
       align = html_classes(cell).include?("center") ? :center : :left
+      padded = !html_classes(cell).include?("center")
 
-      bounding_box [cell_left(i, true), cursor], width: cell_width(i, true) do
+      bounding_box [cell_left(i, padded), cursor], width: cell_width(i, padded) do
         text html, inline_format: true, align: align
       end
     end
