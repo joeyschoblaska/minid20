@@ -4,8 +4,11 @@ module MiniD20::Node
       font :h2
       text node.inner_html.strip
       move_down 1
-      stroke { horizontal_rule }
-      move_down 5
+
+      unless html_classes.include?("table-below")
+        stroke { horizontal_rule }
+        move_down 5
+      end
     end
   end
 end
