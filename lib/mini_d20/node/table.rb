@@ -33,7 +33,7 @@ module MiniD20::Node
 
       stroke { horizontal_rule }
 
-      move_down 10
+      move_down 11
     end
 
     private
