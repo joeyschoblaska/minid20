@@ -48,9 +48,9 @@
   <tr>
     <td width="18%"><strong>Barbarian</strong><br>HD: 1d12</td>
     <td width="82%">
-      AC is 10 + CON + DEX while not wearing armor. Rage (lvl/2 times
-      per rest): +2 dmg to melee (+3 at lvl 9, +4 at lvl 16), advantage on STR
-      checks, lasts 1 min. Athletics, intimidation, survival.
+      AC is 10 + CON + DEX while unarmored, + shield bonus if used. Rage (lvl/2
+      times per rest): +2 dmg to melee (+3 at lvl 9, +4 at lvl 16), advantage
+      on STR checks, lasts 1 min. Athletics, intimidation, survival.
     </td>
   </tr>
   <tr>
@@ -112,20 +112,26 @@
     </td>
   </tr>
   <tr>
-    <td><strong>Sorcerer</strong></td>
-    <td>Simulating four lines of text for each class to see how long this section will be. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Neque porro quisquam est qui.</td>
+    <td><strong>Sorcerer</strong><br>HD: 1d6</td>
+    <td>
+      Can only cast spells if unarmored. Does not prepare spells. Instead,
+      spend SP to cast any spell for normal cost up to level known. Arcana,
+      insight, persuasion.
+    </td>
   </tr>
   <tr>
     <td><strong>Warlock</strong><br>HD: 1d8</td>
     <td>
-      Channels a dark patron. Arcana, deception, religion.
+      Can prep Eldritch Blast 3 times / day for no SP cost: 1d10 + CHA dmg per
+      beam; 2 beams at lvl 5, 3 at 11, 4 at 17; roll to hit for each. Arcana,
+      deception, religion.
     </td>
   </tr>
   <tr>
     <td><strong>Wizard</strong><br>HD: 1d6</td>
     <td>
-      Can only cast spells when unarmored. Extra spells. Arcana, history,
-      nature, medicine, insight.
+      Can only cast spells when unarmored. Extra spells. Familiar? Arcana,
+      history, nature, medicine, insight.
     </td>
   </tr>
 </table>
@@ -274,24 +280,33 @@
 <h2>Spellcasting</h2>
 
 <p>
-  Prepare spells after a long rest. You have a number of spell points to spend;
-  each spell has a level, which is equal to the number of points it costs to
-  prepare. You can prepare the same spell more than once. That day, you can
-  only cast spells you've prepared, and only cast them the number of times
-  you've prepared them. You can only prepare spells up to the max spell level
-  you know.
+  Prepare spells after a long rest. You get a number of spell points (SP) per
+  rest; each spell has a level, which is also to the number of SP it costs to
+  prep. You can prep the same spell more than once (spending SP each time). You
+  can only cast spells you've prepa- red, and only cast them the number of times
+  you've prepared them. As you advance, you get access to more powerful spells.
 </p>
 
 <table class="checkered">
   <tr>
-    <th width="15%"></th>
+    <th width="52%"></th>
+    <th width="48%" class="center">Lvl requirement for spell lvl</th>
+  </tr>
+  <tr>
+    <th width="16%"></th>
     <th width="11%" class="center">MOD</th>
-    <th width="37%" class="center">Spell points per day</th>
-    <th width="37%" class="center">Max spell level</th>
+    <th width="25%" class="center">SP per day</th>
+    <th width="12%" class="center">I</th>
+    <th width="12%" class="center">II</th>
+    <th width="12%" class="center">III</th>
+    <th width="12%" class="center">IV</th>
   </tr>
   <tr>
     <td><strong>Bard</strong></td>
     <td class="center">CHA</td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
     <td class="center"></td>
     <td class="center"></td>
   </tr>
@@ -300,10 +315,16 @@
     <td class="center">WIS</td>
     <td class="center"></td>
     <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
   </tr>
   <tr>
     <td><strong>Druid</strong></td>
     <td class="center">WIS</td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
     <td class="center"></td>
     <td class="center"></td>
   </tr>
@@ -312,30 +333,45 @@
     <td class="center">CHA</td>
     <td class="center"></td>
     <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
   </tr>
   <tr>
     <td><strong>Ranger</strong></td>
     <td class="center">WIS</td>
     <td class="center"></td>
     <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
   </tr>
   <tr>
     <td><strong>Sorcerer</strong></td>
     <td class="center">CHA</td>
-    <td class="center"></td>
-    <td class="center"></td>
+    <td class="center">lvl + 1</td>
+    <td class="center">1</td>
+    <td class="center">5</td>
+    <td class="center">9</td>
+    <td class="center">15</td>
   </tr>
   <tr>
     <td><strong>Warlock</strong></td>
     <td class="center">CHA</td>
-    <td class="center"></td>
-    <td class="center"></td>
+    <td class="center">lvl * 0.75</td>
+    <td class="center">1</td>
+    <td class="center">7</td>
+    <td class="center">15</td>
+    <td class="center">-</td>
   </tr>
   <tr>
     <td><strong>Wizard</strong></td>
     <td class="center">INT</td>
-    <td class="center"></td>
-    <td class="center"></td>
+    <td class="center">lvl + INT</td>
+    <td class="center">1</td>
+    <td class="center">5</td>
+    <td class="center">9</td>
+    <td class="center">15</td>
   </tr>
 </table>
 
