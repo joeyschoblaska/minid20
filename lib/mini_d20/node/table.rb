@@ -3,32 +3,19 @@ module MiniD20::Node
     LIGHT_FILL = "d9d9d9"
     DARK_FILL = "a6a6a6"
 
-    attr_accessor :widths
+    attr_accessor :widths, :tr_stripe_i
 
     def initialize(node, pdf)
       super
       self.widths = []
+      self.tr_stripe_i = 0
     end
 
     def render
       font :primary
-      tr_stripe_i = 0
 
       node.css("tr").each do |tr|
-        set_widths(tr)
-
-        bounding_box [bounds.left, cursor], width: bounds.width do
-          render_cells(tr) # render once to establish row height
-
-          if tr.css("th").empty?
-            render_fills(tr, tr_stripe_i)
-            render_cells(tr) # render second time to paint over background fill
-            stroke { horizontal_rule } if tr_stripe_i == 0
-            tr_stripe_i += 1
-          end
-
-          move_cursor_to bounds.bottom
-        end
+        render_row(tr)
       end
 
       stroke { horizontal_rule }
@@ -37,6 +24,39 @@ module MiniD20::Node
     end
 
     private
+
+    def render_row(tr)
+      set_widths(tr)
+
+      bounding_box [bounds.left, cursor], width: bounds.width do
+        render_cells(tr) # render once to establish row height
+
+        if tr.css("th").empty?
+          render_fills(tr)
+          render_cells(tr) # render second time to paint over background fill
+          stroke { horizontal_rule } if tr_stripe_i == 0
+          self.tr_stripe_i += 1
+        end
+
+        move_cursor_to bounds.bottom
+
+        # erase row if we went past the bottom of page
+        if y < margin_box.absolute_bottom + 10
+          move_cursor_to bounds.top
+          fill_row("FFFFFF")
+          move_cursor_to bounds.bottom
+        end
+
+        raise "row too tall for page" if bounds.height > margin_box.height - 15
+      end
+
+      # move to next page and re-render row if we went past the bottom of page
+      if y < margin_box.absolute_bottom + 10
+        self.tr_stripe_i += 1 if tr.css("th").empty?
+        bounds.move_past_bottom
+        render_row(tr)
+      end
+    end
 
     def render_cells(tr)
       cells(tr).each_with_index do |cell, i|
@@ -71,16 +91,16 @@ module MiniD20::Node
       padded ? width - 1 : width
     end
 
-    def render_fills(tr, tr_i)
+    def render_fills(tr)
       if html_classes.include?("checkered")
         cells(tr).each_with_index do |cell, i|
-          if even?(tr_i) && odd?(i)
+          if even?(tr_stripe_i) && odd?(i)
             fill_cell(i, DARK_FILL)
-          elsif even?(tr_i) || odd?(i)
+          elsif even?(tr_stripe_i) || odd?(i)
             fill_cell(i, LIGHT_FILL)
           end
         end
-      elsif even?(tr_i)
+      elsif even?(tr_stripe_i)
         fill_row(LIGHT_FILL)
       end
     end
