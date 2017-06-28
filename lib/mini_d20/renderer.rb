@@ -21,6 +21,13 @@ class MiniD20::Renderer
       pdf.reflow_column_box [0, pdf.cursor], columns: 2, width: pdf.bounds.width do
         doc.children.each { |c| MiniD20::Node.render(c, pdf) }
       end
+
+      string = "minid20.com • v#{MiniD20::VERSION} • CC0 1.0 Universal License"
+      options = { at: [0, 0],
+                  inline_format: true,
+                  font: MiniD20::Node::Base::FONTS[:primary],
+                  color: "999999" }
+      pdf.number_pages string, options
     end
   end
 

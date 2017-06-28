@@ -2,5 +2,3 @@
 
 ## TODO
 * add logo
-* add footer - url + version + CC license
-
