@@ -3,6 +3,7 @@ module MiniD20::Node
     div: Div,
     h1: H1,
     h2: H2,
+    img: Image,
     p: Paragraph,
     table: Table
   }
