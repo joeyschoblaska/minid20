@@ -129,7 +129,7 @@ module MiniD20::Node
       cells = tr.css("td, th")
 
       if cells.all? { |c| c.attr(:width) }
-        self.widths = cells.map { |c| c.attr(:width).to_i }
+        self.widths = cells.map { |c| c.attr(:width).to_f }
       end
     end
   end
