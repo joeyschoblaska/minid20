@@ -25,7 +25,7 @@ class MiniD20::Renderer
       string = "minid20.com • v#{MiniD20::VERSION} • CC0 1.0 Universal License"
       options = { at: [0, 0],
                   font: MiniD20::Node::Base::FONTS[:primary],
-                  color: "999999",
+                  color: "555555",
                   align: :center }
       pdf.number_pages string, options
     end
