@@ -39,22 +39,6 @@ module MiniD20::Node
         end
 
         move_cursor_to bounds.bottom
-
-        # erase row if we went past the bottom of page
-        if y < margin_box.absolute_bottom + 10
-          move_cursor_to bounds.top
-          fill_row("FFFFFF")
-          move_cursor_to bounds.bottom
-        end
-
-        raise "row too tall for page" if bounds.height > margin_box.height - 15
-      end
-
-      # move to next page and re-render row if we went past the bottom of page
-      if y < margin_box.absolute_bottom + 10
-        self.tr_stripe_i += 1 if tr.css("th").empty?
-        bounds.move_past_bottom
-        render_row(tr)
       end
     end
 
