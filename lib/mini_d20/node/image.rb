@@ -7,7 +7,7 @@ module MiniD20::Node
       }
 
       image path, options
-      move_down 5
+      move_down 15
     end
 
     def path
