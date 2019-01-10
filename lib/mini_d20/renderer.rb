@@ -38,6 +38,7 @@ class MiniD20::Renderer
   end
 
   def pdf_path
-    "doc/#{filename.gsub(/\.\w+/, ".pdf")}"
+    output_filename = "#{filename.gsub(/\.\w+/, "")} v#{MiniD20::VERSION.gsub(".", "-")}.pdf"
+    "releases/#{output_filename}"
   end
 end
